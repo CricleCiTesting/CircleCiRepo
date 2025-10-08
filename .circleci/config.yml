@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/gcc:11.2
+    steps:
+      - checkout
+      - run:
+          name: "Build Application"
+          command: make all
+      - run:
+          name: "Run Tests"
+          command: make test
+
+workflows:
+  build_test_workflow:
+    jobs:
+      - build-and-test
